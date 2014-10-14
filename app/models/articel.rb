@@ -34,4 +34,8 @@ class Articel < ActiveRecord::Base
         index: Articel.index_name,
         body: { settings: Articel.settings.to_hash, mappings: Articel.mappings.to_hash }
   end
+
+  def custom_search
+    fr = Articel.search facets: { tags: {terms: {field: 'desc'} } }
+  end
 end
