@@ -16,15 +16,15 @@ class Articel < ActiveRecord::Base
         },
         analyzer: {
           custom_synonym: {
-            filter: ['custom_synonym'],
-            type: 'snowball',
-            tokenizer: 'snowball'
+            filter: ['standard','lowercase', 'stop','custom_synonym'],
+            type: 'custom',
+            tokenizer: 'standard'
           } 
         }
       }  
     } do
     mappings dynamic: 'false' do
-      indexes :desc, search_analyzer: 'custom_synonym', index_analyzer: 'custom_synonym'
+      indexes :desc, analyzer: 'custom_synonym'
     end
   end
   
